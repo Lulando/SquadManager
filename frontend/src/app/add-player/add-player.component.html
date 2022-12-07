@@ -1,0 +1,36 @@
+<div>
+  <form [formGroup]="playerform" (ngSubmit)="onSubmit()">
+    <input
+      id="first-name"
+      type="text"
+      formControlName="fname"
+      placeholder="First Name"
+    /><br />
+    <input
+      id="last-name"
+      type="text"
+      formControlName="lname"
+      placeholder="Last Name"
+    /><br />
+    <input
+      id="tshirt"
+      type="number"
+      formControlName="tshirt"
+      placeholder="Tshirt number"
+    /><br />
+    <input
+      id="club"
+      type="text"
+      formControlName="club"
+      placeholder="club"
+    /><br />
+    <select aria-label="pstChoice" formControlName="pos" id="position">
+      <option value="" disabled selected>Positon:</option>
+      <option value="b">Goalkeeper</option>
+      <option value="o">Defender</option>
+      <option value="p">Midfielder</option>
+      <option value="n">Striker</option></select
+    ><br />
+    <button type="submit" [disabled]="!playerform.valid">Add</button>
+  </form>
+</div>
