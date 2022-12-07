@@ -14,7 +14,6 @@ export class AddPlayerComponent implements OnInit {
   playerform: FormGroup = new FormGroup({
     fname: new FormControl('', [Validators.required, Validators.minLength(2)]),
     lname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    tshirt: new FormControl('', Validators.required),
     club: new FormControl('', [Validators.required, Validators.minLength(3)]),
     pos: new FormControl('', [Validators.required]),
   });
