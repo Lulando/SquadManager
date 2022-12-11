@@ -47,7 +47,7 @@ export class HttpServiceService {
     );
   }
 
-  getSquad() {
+  getSquads() {
     return this.http.get(
       'https://squadman-a76ea-default-rtdb.europe-west1.firebasedatabase.app/squad.json'
     );
@@ -55,7 +55,7 @@ export class HttpServiceService {
 
   editSquad(id: string, data: unknown) {
     return this.http.patch(
-      'https://squadman-a76ea-default-rtdb.europe-west1.firebasedatabase.app/${id}/json',
+      'https://squadman-a76ea-default-rtdb.europe-west1.firebasedatabase.app/squad/${id}.json',
       data
     );
   }

@@ -13,7 +13,7 @@ export class SquadComponent implements OnInit {
   constructor(private http: HttpServiceService) {}
 
   allPlayers: fetchedPlayer[] = [];
-  squadList: fetchedPlayer[] = [];
+  squad: fetchedPlayer[] = [];
   availablePlayers: fetchedPlayer[] = [];
   Goalkeepers: fetchedPlayer[] = [];
   currPlayer?: fetchedPlayer;
@@ -36,7 +36,19 @@ export class SquadComponent implements OnInit {
       });
     });
 
-    this.http.getSquad().subscribe((data: any) => {});
+    this.http.getSquads().subscribe((data: any) => {
+      if (!data) {
+        return;
+      }
+
+      const result = Object.keys(data).map((key) => {
+        const player = {
+          id: key,
+          ...data[key],
+        };
+      });
+    });
+    console.log(this.squad);
   }
 
   addToSquad(id: string) {
@@ -50,14 +62,14 @@ export class SquadComponent implements OnInit {
         (player) => player.pos !== 'Goalkeeper'
       );
     }
-    this.squadList.push(this.currPlayer);
+    this.squad.push(this.currPlayer);
     this.availablePlayers = this.availablePlayers.filter(
       (player) => player.id !== id
     );
   }
 
   removeFromSquad(id: string) {
-    this.currPlayer = this.squadList.find((player) => player.id === id);
+    this.currPlayer = this.squad.find((player) => player.id === id);
     if (!this.currPlayer) {
       return;
     }
@@ -66,14 +78,14 @@ export class SquadComponent implements OnInit {
       this.Goalkeepers.forEach((goalkeeper) => {
         this.availablePlayers.push(goalkeeper);
       });
-      this.squadList = this.squadList.filter((player) => player.id !== id);
+      this.squad = this.squad.filter((player) => player.id !== id);
     } else {
-      this.squadList = this.squadList.filter((player) => player.id !== id);
+      this.squad = this.squad.filter((player) => player.id !== id);
       this.availablePlayers.push(this.currPlayer);
     }
   }
 
   createSquad() {
-    console.log(this.squadList);
+    this.http.createSquad(this.squad).subscribe((data) => {});
   }
 }
