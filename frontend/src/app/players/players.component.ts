@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from '../http-service.service';
 import { fetchedPlayer } from '../types/player';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PlayerEditComponent } from '../player-edit/player-edit.component';
+import { ActivatedRoute, Params, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
@@ -26,36 +29,11 @@ export class PlayersComponent implements OnInit {
         this.allPlayers.push(player);
       });
     });
+    console.log(this.allPlayers);
   }
 
   deleteHandler(id: string) {
     this.http.deletePlayer(id).subscribe();
     this.allPlayers = this.allPlayers.filter((player) => player.id !== id);
-  }
-
-  editPlayerForm: FormGroup = new FormGroup({
-    fname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    lname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    club: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    pos: new FormControl('', [Validators.required]),
-  });
-
-  editHandler(id: string) {
-    const data = { lname: 'AAAA' }; // dane zawodników
-    this.http.editPlayer(id, data).subscribe((data: any) => {
-      this.allPlayers = this.allPlayers.map((player) => {
-        if (player.id === id) {
-          const pl = {
-            id,
-            lname: data?.lname ?? player.lname,
-            fname: data?.fname ?? player.fname,
-            club: data?.club ?? player.club,
-            pos: data?.pos ?? player.pos,
-          };
-          return pl;
-        }
-        return player;
-      }) as fetchedPlayer[];
-    });
   }
 }

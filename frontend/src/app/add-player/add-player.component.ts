@@ -21,7 +21,6 @@ export class AddPlayerComponent implements OnInit {
 
   onSubmit(event: any) {
     event.preventDefault();
-    // validation
     this.http.createPlayer(this.playerform.value).subscribe((data) => {
       this.playerform.reset();
     });

@@ -1,7 +1,10 @@
 <div class="player" *ngFor="let player of allPlayers">
-  <div>Name: {{player.fname}} {{player.lname}}</div>
-  <div>Club: {{player.club}}</div>
-  <div>Position: {{player.pos}}</div>
+  <div>Name: {{ player.fname }} {{ player.lname }}</div>
+  <div>Club: {{ player.club }}</div>
+  <div>Position: {{ player.pos }}</div>
   <button (click)="deleteHandler(player.id)">Delete</button>
-  <button (click)="editHandler(player.id)">Edit</button>
+  <!-- <button (click)="editHandler(player.id)">Edit</button> -->
+  <a routerLink="/players/{{ player.id }}" >
+    <button>Edit</button>
+  </a>
 </div>

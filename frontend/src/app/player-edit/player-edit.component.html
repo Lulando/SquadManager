@@ -1,0 +1,41 @@
+<div>
+  <form [formGroup]="editPlayerForm" (ngSubmit)="editHandler(this.id, $event)">
+    <div class="form-group">
+      <label for="first-name">First Name</label>
+      <input
+        id="first-name"
+        type="text"
+        formControlName="fname"
+        placeholder="First Name"
+      /><br />
+    </div>
+    <div class="form-group">
+      <label for="last-name">Last Name</label>
+      <input
+        id="last-name"
+        type="text"
+        formControlName="lname"
+        placeholder="Last Name"
+      /><br />
+    </div>
+    <div class="form-group">
+      <label for="club">Club</label>
+      <input
+        id="club"
+        type="text"
+        formControlName="club"
+        placeholder="club"
+      /><br />
+    </div>
+    <div class="form-group">
+      <label for="position">Position</label>
+      <select aria-label="pstChoice" formControlName="pos" id="position">
+        <option value="Goalkeeper">Goalkeeper</option>
+        <option value="Defender">Defender</option>
+        <option value="Midfielder">Midfielder</option>
+        <option value="Striker">Striker</option></select
+      ><br />
+    </div>
+    <button type="submit" [disabled]="!editPlayerForm.valid">Edit</button>
+  </form>
+</div>

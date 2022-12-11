@@ -9,6 +9,7 @@ import { AddPlayerComponent } from './add-player/add-player.component';
 import { SquadComponent } from './squad/squad.component';
 import { PlayersComponent } from './players/players.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PlayerEditComponent } from './player-edit/player-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     AddPlayerComponent,
     SquadComponent,
     PlayersComponent,
+    PlayerEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
