@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AddPlayerComponent } from './add-player/add-player.component';
 import { SquadComponent } from './squad/squad.component';
 import { PlayersComponent } from './players/players.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { PlayersComponent } from './players/players.component';
     SquadComponent,
     PlayersComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

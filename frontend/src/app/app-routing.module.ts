@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'squad', component: SquadComponent },
   { path: 'players', component: PlayersComponent },
   { path: 'addplayer', component: AddPlayerComponent },
-  { path: '', redirectTo: '/players', pathMatch: 'full' },
+  { path: '', redirectTo: '/squad', pathMatch: 'full' },
 ];
 
 @NgModule({

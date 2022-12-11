@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpServiceService } from '../http-service.service';
 
 @Component({
   selector: 'app-add-player',
@@ -7,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-player.component.scss'],
 })
 export class AddPlayerComponent implements OnInit {
-  constructor() {}
+  constructor(private http: HttpServiceService) {}
 
   ngOnInit() {}
 
@@ -18,7 +19,11 @@ export class AddPlayerComponent implements OnInit {
     pos: new FormControl('', [Validators.required]),
   });
 
-  onSubmit() {
-    console.log(this.playerform.value);
+  onSubmit(event: any) {
+    event.preventDefault();
+    // validation
+    this.http.createPlayer(this.playerform.value).subscribe((data) => {
+      this.playerform.reset();
+    });
   }
 }
