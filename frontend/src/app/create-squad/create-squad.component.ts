@@ -3,23 +3,33 @@ import { HttpServiceService } from '../http-service.service';
 import { squad, fetchedSquad } from '../types/squad';
 import { fetchedPlayer, player } from '../types/player';
 import { provideProtractorTestingSupport } from '@angular/platform-browser';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-squad',
-  templateUrl: './squad.component.html',
-  styleUrls: ['./squad.component.scss'],
+  selector: 'app-create-squad',
+  templateUrl: './create-squad.component.html',
+  styleUrls: ['./create-squad.component.scss'],
 })
-export class SquadComponent implements OnInit {
-  constructor(private http: HttpServiceService) {}
+export class CreateSquadComponent {
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpServiceService,
+    private router: Router
+  ) {}
 
   allPlayers: fetchedPlayer[] = [];
-  allSquads: fetchedSquad[] = [];
   currSquad: fetchedPlayer[] = [];
-  fetchSquad?: fetchedPlayer;
+  fetchSquad: fetchedSquad = {
+    name: '',
+    players: [],
+  };
   availablePlayers: fetchedPlayer[] = [];
   Goalkeepers: fetchedPlayer[] = [];
   currPlayer?: fetchedPlayer;
   isGkAdded: boolean = false;
+
+  name: string = '';
 
   ngOnInit(): void {
     this.http.getPlayers().subscribe((data: any) => {
@@ -35,21 +45,6 @@ export class SquadComponent implements OnInit {
         this.allPlayers.push(player);
         this.availablePlayers.push(player);
         if (player.pos === 'Goalkeeper') this.Goalkeepers.push(player);
-      });
-    });
-
-    this.http.getSquads().subscribe((data: any) => {
-      if (!data) {
-        return;
-      }
-
-      const result = Object.keys(data).map((key) => {
-        const squad = {
-          id: key,
-          ...data[key],
-        };
-
-        this.allSquads.push(squad);
       });
     });
   }
@@ -88,7 +83,19 @@ export class SquadComponent implements OnInit {
     }
   }
 
-  changeSquad(event: any) {
-    console.log(event.value);
+  createSquad() {
+    if (!this.name) {
+      alert('Squad name cannot be empty');
+    } else if (this.name.length < 4) {
+      alert('Squad name cannot be shorter than 4 characters');
+    } else {
+      this.fetchSquad.name = this.name;
+      this.currSquad.forEach((player) => {
+        this.fetchSquad.players.push(player);
+      });
+      this.http.createSquad(this.fetchSquad).subscribe((data) => {
+        this.router.navigate(['/squad']);
+      });
+    }
   }
 }

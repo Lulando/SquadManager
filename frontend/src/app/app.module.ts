@@ -10,6 +10,7 @@ import { SquadComponent } from './squad/squad.component';
 import { PlayersComponent } from './players/players.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PlayerEditComponent } from './player-edit/player-edit.component';
+import { CreateSquadComponent } from './create-squad/create-squad.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PlayerEditComponent } from './player-edit/player-edit.component';
     SquadComponent,
     PlayersComponent,
     PlayerEditComponent,
+    CreateSquadComponent,
   ],
   imports: [
     BrowserModule,

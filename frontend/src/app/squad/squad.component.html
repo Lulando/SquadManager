@@ -1,19 +1,31 @@
-<div class="d-flex">
-  <div>
-    <h3>Squad</h3>
-    <div class="squad" *ngFor="let player of currSquad">
-      <div>{{ player.fname }} {{ player.lname }}</div>
-      <div>{{ player.pos }}</div>
-      <button (click)="removeFromSquad(player.id)">Remove</button>
+<div class>
+  <a routerLink="/squad/create">
+    <div>
+      <button>+</button>
     </div>
-    <button (click)="createSquad()">Save Squad</button>
-  </div>
-  <div>
-    <h3>Available players</h3>
-    <div class="squad" *ngFor="let player of availablePlayers">
-      <div>{{ player.fname }} {{ player.lname }}</div>
-      <div>{{ player.pos }}</div>
-      <button (click)="addToSquad(player.id)">Add</button>
+  </a>
+  <!-- <select id="squad" (change)="changeSquad($event)">
+    <option *ngFor="let squad of allSquads" [value]="squad">
+      {{ squad }}
+    </option>
+  </select> -->
+  <div class="d-flex">
+    <div>
+      <h3 class="m-1"></h3>
+      <div class="squad" *ngFor="let player of currSquad">
+        <div>{{ player.fname }} {{ player.lname }}</div>
+        <div>{{ player.pos }}</div>
+        <button (click)="removeFromSquad(player.id)">Remove</button>
+      </div>
+      <!-- <button (click)="createSquad()">Save Squad</button> -->
+    </div>
+    <div>
+      <h3 class="m-1">Available players</h3>
+      <div class="squad" *ngFor="let player of availablePlayers">
+        <div>{{ player.fname }} {{ player.lname }}</div>
+        <div>{{ player.pos }}</div>
+        <button (click)="addToSquad(player.id)">Add</button>
+      </div>
     </div>
   </div>
 </div>
