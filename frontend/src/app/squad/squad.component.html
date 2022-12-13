@@ -1,7 +1,7 @@
 <div class="d-flex">
   <div>
     <h3>Squad</h3>
-    <div class="squad" *ngFor="let player of squad">
+    <div class="squad" *ngFor="let player of currSquad">
       <div>{{ player.fname }} {{ player.lname }}</div>
       <div>{{ player.pos }}</div>
       <button (click)="removeFromSquad(player.id)">Remove</button>

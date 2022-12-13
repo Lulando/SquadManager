@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'players', component: PlayersComponent },
   { path: 'players/:id', component: PlayerEditComponent },
   { path: 'addplayer', component: AddPlayerComponent },
-  { path: '', redirectTo: '/squad', pathMatch: 'full' },
+  { path: '', redirectTo: '/players', pathMatch: 'full' },
 ];
 
 @NgModule({
